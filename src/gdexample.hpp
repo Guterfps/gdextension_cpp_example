@@ -14,12 +14,19 @@ class GDExample : public Sprite2D {
         ~GDExample();
 
         void _process(double delta) override;
+        
+        void set_amplitude(const double& amplitude);
+        double get_amplitude() const;
+        void set_speed(const double& speed);
+        double get_speed() const;
 
     protected:
         static void _bind_methods();
 
     private:
         double m_time_passed;
+        double m_amplitude;
+        double m_speed;
 };
 
 } // godot namespace

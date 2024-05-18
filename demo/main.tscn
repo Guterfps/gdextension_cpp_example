@@ -5,6 +5,6 @@
 [node name="Main" type="Node2D"]
 
 [node name="GDExample" type="GDExample" parent="."]
-position = Vector2(18.315, 9.50974)
+position = Vector2(16.5296, 4.91352)
 texture = ExtResource("1_3yf3q")
 centered = false
