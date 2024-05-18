@@ -6,7 +6,7 @@
 namespace godot {
 
 GDExample::GDExample() : 
-m_time_passed(0.0), m_amplitude(10.0), m_speed(1.0) {
+m_time_passed(0.0), m_time_emit(0.0), m_amplitude(10.0), m_speed(1.0) {
 }
 
 GDExample::~GDExample() {
@@ -29,6 +29,10 @@ void GDExample::_bind_methods() {
                         PROPERTY_HINT_RANGE, "0,20,0.01"),
                         "set_speed", "get_speed");
 
+    ADD_SIGNAL(MethodInfo("position_changed", 
+                PropertyInfo(Variant::OBJECT, "node"), 
+                PropertyInfo(Variant::VECTOR2, "new_pos")));
+
 }
 
 void GDExample::_process(double delta) {
@@ -39,6 +43,13 @@ void GDExample::_process(double delta) {
                             m_amplitude + 
                             (m_amplitude * cos(m_time_passed * 1.5)));
     set_position(new_position);
+
+    m_time_emit += delta;
+    if (m_time_emit > 1.0) {
+        emit_signal("position_changed", this, new_position);
+
+        m_time_emit = 0.0;
+    }
 }
 
 void GDExample::set_amplitude(const double& amplitude) {

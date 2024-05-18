@@ -25,6 +25,7 @@ class GDExample : public Sprite2D {
 
     private:
         double m_time_passed;
+        double m_time_emit;
         double m_amplitude;
         double m_speed;
 };
